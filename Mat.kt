@@ -3,6 +3,7 @@ import java.lang.StringBuilder
 import kotlin.math.min
 import kotlin.math.pow
 
+/** created by qibin*/
 class Mat(
         val rows: Int,
         val cols: Int,
