@@ -22,6 +22,7 @@ val mat = identity(2)
 ```
 
 2. get value
+
 get the value at position (i, j)
 ``` kotlin
 println(mat[i, j])
@@ -32,6 +33,7 @@ print(mat)
 ```
 
 3. set value
+
 set the value at position (i, j)
 ``` kotlin
 mat[i, j] = 10.0
