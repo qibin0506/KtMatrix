@@ -1,5 +1,5 @@
 # KtMatrix
-A kotlin implemention of Matrix
+A kotlin implemention of Matrix, support add, multipy, dot, transpose, inverse, determinant, trace, adjugate matrix and etc.
 
 ## Usage
 
