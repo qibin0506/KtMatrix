@@ -67,7 +67,7 @@ println(mat * 2.0)
 println(mat.dot(mat2))
 ```
 
-10. 逐元素出发
+10. 逐元素除法
 ``` kotlin
 println(mat / mat2)
 println(mat / 2.0)
