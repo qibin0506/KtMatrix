@@ -4,6 +4,7 @@ A kotlin implemention of Matrix, support add, multipy, dot, transpose, inverse, 
 ## Usage [中文说明](https://github.com/qibin0506/KtMatrix/blob/master/README_ZH.md)
 
 1. init
+
 get a 3x3 matrix and initialize the value.
 ``` kotlin
 val mat = Mat(3, 3) {
