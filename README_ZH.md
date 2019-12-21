@@ -4,6 +4,7 @@
 ## 使用说明 [English version](https://github.com/qibin0506/KtMatrix/blob/master/README.md)
 
 1. 初始化
+
 初始化一个3x3的矩阵
 ``` kotlin
 val mat = Mat(3, 3) {
