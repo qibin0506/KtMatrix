@@ -95,7 +95,7 @@ class Mat(
     }
 
     /**
-     * the adjugate of this matrix.
+     * the adjugate matrix of this matrix.
      */
     fun adj(): Mat {
         assert(this.rows == this.cols, "this.cols must be equals this.rows")
