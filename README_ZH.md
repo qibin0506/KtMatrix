@@ -17,7 +17,7 @@ val mat = Mat(3, 3) {
 ```
 或者利用一下代码获取一个3x3的单位矩阵
 ``` kotlin
-val mat = identity(2)
+val mat = identity(3)
 ```
 
 2. 获取矩阵的值
