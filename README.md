@@ -18,7 +18,7 @@ val mat = Mat(3, 3) {
 
 or, get a 3x3 identity matrix by using,
 ``` kotlin
-val mat = identity(2)
+val mat = identity(3)
 ```
 
 2. get value
