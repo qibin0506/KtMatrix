@@ -5,7 +5,7 @@ import kotlin.math.pow
 
 /** created by qibin*/
 
-var BLOCK_SIZE = 2
+var BLOCK_SIZE = 7
 
 class Mat(
         val rows: Int,
