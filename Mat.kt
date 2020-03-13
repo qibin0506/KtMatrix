@@ -3,6 +3,8 @@ import java.lang.StringBuilder
 import kotlin.math.min
 import kotlin.math.pow
 
+var BLOCK_SIZE = 2
+
 class Mat(
         val rows: Int,
         val cols: Int,
@@ -40,14 +42,55 @@ class Mat(
     /**
      * the dot product of this and right.
      */
-    fun dot(right: Mat): Mat {
+    fun dot(right: Mat, block: Boolean = false): Mat {
         assert(this.cols == right.rows, "left.cols must be equals right.rows")
+
+        if (block &&
+                (this.rows > BLOCK_SIZE ||
+                        this.cols > BLOCK_SIZE ||
+                        right.cols > BLOCK_SIZE)) {
+            return blockDot(right)
+        }
+
         val rst = Mat(this.rows, right.cols)
 
         for (i in 0 until this.rows) {
             for (j in 0 until this.cols) {
+                val selfValue = this[i, j]
                 for (k in 0 until right.cols) {
-                    rst[i, k] += this[i, j] * right[j, k]
+                    rst[i, k] += selfValue * right[j, k]
+                }
+            }
+        }
+
+        return rst
+    }
+
+    /**
+     * calc the dot product by using matrix block
+     */
+    private fun blockDot(right: Mat): Mat {
+        assert(this.cols == right.rows, "left.cols must be equals right.rows")
+        val rst = Mat(this.rows, right.cols)
+
+        for (bi in 0 until this.rows step BLOCK_SIZE) {
+            val iUntil = min(bi + BLOCK_SIZE, this.rows)
+
+            for (bj in 0 until this.cols step BLOCK_SIZE) {
+                val jUntil = min(bj + BLOCK_SIZE, this.cols)
+
+                for (bk in 0 until right.cols step BLOCK_SIZE) {
+                    val kUntil = min(bk + BLOCK_SIZE, right.cols)
+
+                    for (i in bi until iUntil) {
+                        for (j in bj until jUntil) {
+                            val selfValue = this[i, j]
+
+                            for (k in bk until kUntil) {
+                                rst[i, k] += selfValue * right[j, k]
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -95,7 +138,7 @@ class Mat(
     }
 
     /**
-     * the adjugate of this matrix.
+     * the adjugate matrix of this matrix.
      */
     fun adj(): Mat {
         assert(this.rows == this.cols, "this.cols must be equals this.rows")
@@ -124,6 +167,29 @@ class Mat(
 
         val adj = this.adj()
         return adj / det
+    }
+
+    /**
+     * whether or not this equals mat
+     */
+    fun equal(mat: Mat): Boolean {
+        if (this.rows != mat.rows) {
+            return false
+        }
+
+        if (this.cols != mat.cols) {
+            return false
+        }
+
+        for (row in 0 until this.rows) {
+            for (col in 0 until this.cols) {
+                if (this[row, col] != mat[row, col]) {
+                    return false
+                }
+            }
+        }
+
+        return true
     }
 
     private fun det(mat: Mat): Double {
